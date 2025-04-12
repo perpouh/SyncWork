@@ -51,21 +51,10 @@ FROM base
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /app /app
 
-# Run and own only the runtime files as a non-root user for security
+# Create non-root user and ensure necessary directories exist with correct permissions
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+    mkdir -p /app/tmp/sockets && \
+    chown -R rails:rails /app && \
+    chmod -R 777 /app/tmp /app/log
 
-# Ensure tmp/sockets directory exists and has correct permissions
-RUN mkdir -p /app/tmp/sockets && \
-    chown -R rails:rails /app/tmp && \
-    chmod -R 777 /app/tmp
-
-# USER 1000:1000
-
-# Entrypoint prepares the database.
-# ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# Start the server by default, this can be overwritten at runtime
-# EXPOSE 3000
-# CMD ["rails", "server", "-b", "0.0.0.0"]
