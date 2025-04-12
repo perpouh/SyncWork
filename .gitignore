@@ -1,0 +1,3 @@
+containers/mysql_data/**/*
+frontend/node_modules/**/*
+backend/bundle/**/*
