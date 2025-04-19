@@ -49,6 +49,9 @@ jobs:
           --health-timeout=5s
           --health-retries=3
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Check path
         run: pwd && ls -la
 
@@ -58,9 +61,6 @@ jobs:
           sudo apt-get update && \
           sudo apt-get install --no-install-recommends -y \
             curl libjemalloc2 libvips42 gcc g++ make default-libmysqlclient-dev libyaml-dev mysql-client
-
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
