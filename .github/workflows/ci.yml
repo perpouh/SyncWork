@@ -49,6 +49,9 @@ jobs:
           --health-timeout=5s
           --health-retries=3
     steps:
+      - name: Check path
+        run: pwd && ls -la
+
       - name: Install packages
         run: |
           sudo rm -rf /var/lib/apt/lists/* && \
@@ -64,9 +67,6 @@ jobs:
         with:
           ruby-version: 3.2.8
           bundler-cache: true
-
-      - name: Check path
-        run: pwd && ls -la
 
       - name: Install dependencies
         run: bundle install
