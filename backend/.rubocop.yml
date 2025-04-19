@@ -11,6 +11,9 @@ require:
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+Layout/HashAlignment:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'bundle/**/*'
