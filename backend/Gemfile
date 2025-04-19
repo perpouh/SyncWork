@@ -39,15 +39,22 @@ gem "kaminari"
 gem "ransack" # Search engine for Active Record
 gem "shrine" # File attachment library for Ruby applications
 
+gem "stringio", "3.0.4"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", require: false
+  gem "brakeman", '~> 7.0.2', require: false
 
+  gem "rubocop", require: false # Ruby static code analyzer and formatter
+  gem "rubocop-discourse", require: false
+  gem "rubocop-capybara", require: false # Capybara extension for RuboCop
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "bullet" # Helps to kill N+1 queries and unused eager loading
+  gem "simplecov" # Simple code coverage for Ruby
 end
 
 group :development do

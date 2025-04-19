@@ -1,8 +1,9 @@
 # README
-## Project Title / プロジェクトのタイトル
+## SyncWork
 
-One Paragraph of project description goes here  
-プロジェクトの概要を 1 段落でここに書きます
+主訴：出勤打刻時に自動で今日のタスクが出てきてほしい
+
+[![CI](https://github.com/perpouh/SyncWork/actions/workflows/ci.yml/badge.svg)](https://github.com/perpouh/SyncWork/actions/workflows/ci.yml)
 
 ## Getting Started / スタートガイド
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
