@@ -1,0 +1,16 @@
+error:
+  type: object
+  required:
+    - errorId
+    - name
+  properties:
+    errorId:
+      type: integer
+      format: int64
+    name:
+      type: string
+errors:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/error"

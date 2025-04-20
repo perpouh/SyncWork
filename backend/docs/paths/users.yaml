@@ -1,0 +1,33 @@
+users:
+  get:
+    summary: Get all users
+    operationId: getUsers
+    tags:
+      - User
+    parameters:
+      - name: limit
+        in: query
+        description: How many users to return at one time (max 100)
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          format: int32
+    responses:
+      '200':
+        description: A paged array of users
+        content:
+          application/json:    
+            schema:
+              $ref: "../components/schemas/user.yaml#/users"
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"

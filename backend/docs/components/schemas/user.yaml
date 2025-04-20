@@ -1,0 +1,16 @@
+user:
+  type: object
+  required:
+    - userId
+    - name
+  properties:
+    userId:
+      type: integer
+      format: int64
+    name:
+      type: string
+users:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/user"

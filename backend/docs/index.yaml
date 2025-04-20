@@ -1,0 +1,28 @@
+openapi: "3.0.3"
+info:
+  version: 2023.1.1
+  title: XXX Travel
+  description: Travel service
+servers:
+  - url: http://xxx.travel.net/v1
+    description: Online Travel Agency Service
+tags:
+  - name: Admin
+    description: Admin Operation
+  - name: Manager
+    description: Manager Operation
+  - name: Member
+    description: Member Operation
+paths:
+  /users:
+    $ref: "./paths/users.yaml#/users"
+  /projects:
+    $ref: "./paths/projects.yaml#/projects"
+components:
+  schemas:
+    user:
+      $ref: "./components/schemas/user.yaml#/user"
+    project:
+      $ref: "./components/schemas/project.yaml#/project"
+    error:
+      $ref: "./components/schemas/error.yaml#/error"

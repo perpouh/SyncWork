@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  version: 2023.1.1
+  title: XXX Travel
+  description: Travel service
+servers:
+  - url: 'http://xxx.travel.net/v1'
+    description: Online Travel Agency Service
+tags:
+  - name: Admin
+    description: Admin Operation
+  - name: Manager
+    description: Manager Operation
+  - name: Member
+    description: Member Operation
+paths:
+  /users:
+    get:
+      summary: Get all users
+      operationId: getUsers
+      tags:
+        - User
+      parameters:
+        - name: limit
+          in: query
+          description: How many users to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            format: int32
+      responses:
+        '200':
+          description: A paged array of users
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/user'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  summary: Unexpected error
+                  value: |-
+                    {
+                      "code": "ERR90002",
+                      "message": "we couldn't handle your request."
+                    }
+                overload_error:
+                  summary: Processing overload
+                  value: |-
+                    {
+                      "code": "ERR90001",
+                      "message": "we couldn't handle your request."
+                    }
+  /projects:
+    get:
+      summary: Get all projects
+      operationId: getProjects
+      tags:
+        - Project
+      parameters:
+        - name: limit
+          in: query
+          description: How many projects to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            format: int32
+      responses:
+        '200':
+          description: A paged array of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/project'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+components:
+  schemas:
+    user:
+      type: object
+      required:
+        - userId
+        - name
+      properties:
+        userId:
+          type: integer
+          format: int64
+        name:
+          type: string
+    project:
+      type: object
+      required:
+        - projectId
+        - name
+      properties:
+        projectId:
+          type: integer
+          format: int64
+        name:
+          type: string
+    error:
+      type: object
+      required:
+        - errorId
+        - name
+      properties:
+        errorId:
+          type: integer
+          format: int64
+        name:
+          type: string
