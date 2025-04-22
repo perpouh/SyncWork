@@ -85,4 +85,4 @@ jobs:
           DB_USER: root
           DB_PASSWORD: password
           DB_DATABASE: app_test
-        run: bundle exec rails db:create db:migrate && rails test
+        run: bundle exec rails db:create db:migrate && bundle exec rspec
