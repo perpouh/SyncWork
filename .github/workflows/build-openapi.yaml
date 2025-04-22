@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  expand-openapi:
+  build-openapi:
     runs-on: ubuntu-latest
 
     steps:

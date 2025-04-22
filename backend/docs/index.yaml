@@ -1,11 +1,11 @@
 openapi: "3.0.3"
 info:
   version: 2023.1.1
-  title: XXX Travel
-  description: Travel service
+  title: SyncWork
+  description: Syncronize your work with your team
 servers:
-  - url: http://xxx.travel.net/v1
-    description: Online Travel Agency Service
+  - url: http://localhost
+    description: Syncronize your work with your team
 tags:
   - name: Admin
     description: Admin Operation
@@ -16,8 +16,12 @@ tags:
 paths:
   /users:
     $ref: "./paths/users.yaml#/users"
+  /users/{id}:
+    $ref: "./paths/user.yaml#/user"
   /projects:
     $ref: "./paths/projects.yaml#/projects"
+  /projects/{id}:
+    $ref: "./paths/project.yaml#/project"
 components:
   schemas:
     user:

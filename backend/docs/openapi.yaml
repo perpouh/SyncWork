@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
   version: 2023.1.1
-  title: XXX Travel
-  description: Travel service
+  title: SyncWork
+  description: Syncronize your work with your team
 servers:
-  - url: 'http://xxx.travel.net/v1'
-    description: Online Travel Agency Service
+  - url: 'http://localhost'
+    description: Syncronize your work with your team
 tags:
   - name: Admin
     description: Admin Operation
@@ -60,6 +60,65 @@ paths:
                       "code": "ERR90001",
                       "message": "we couldn't handle your request."
                     }
+  '/users/{id}':
+    get:
+      summary: Get user by ID
+      operationId: getUserById
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: User object returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+    delete:
+      summary: Delete user by ID
+      operationId: deleteUserById
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: User deleted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
   /projects:
     get:
       summary: Get all projects
@@ -96,38 +155,118 @@ paths:
                   $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
                 overload_error:
                   $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+  '/projects/{id}':
+    get:
+      summary: Get project by ID
+      operationId: getProjectById
+      tags:
+        - Project
+      parameters:
+        - name: id
+          in: path
+          description: ID of project to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project object returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+    delete:
+      summary: Delete project by ID
+      operationId: deleteProjectById
+      tags:
+        - Project
+      parameters:
+        - name: id
+          in: path
+          description: ID of project to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Project deleted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
 components:
   schemas:
     user:
       type: object
       required:
-        - userId
-        - name
+        - id
+        - username
+        - screen_name
+        - email
       properties:
-        userId:
+        id:
           type: integer
           format: int64
-        name:
+        username:
           type: string
+        screen_name:
+          type: string
+        office:
+          type: object
+          required:
+            - id
+            - office_name
+          properties:
+            id:
+              type: integer
+              format: int64
+            office_name:
+              type: string
+        department:
+          type: object
+          required:
+            - id
+            - department_name
+          properties:
+            id:
+              type: integer
+              format: int64
+            department_name:
+              type: string
+        status:
+          type: integer
     project:
       type: object
       required:
-        - projectId
-        - name
+        - id
+        - project_name
       properties:
-        projectId:
-          type: integer
-          format: int64
-        name:
+        id:
+          type: string
+        project_name:
           type: string
     error:
       type: object
-      required:
-        - errorId
-        - name
       properties:
-        errorId:
-          type: integer
-          format: int64
-        name:
+        error:
           type: string
+        errors:
+          type: array

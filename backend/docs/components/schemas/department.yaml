@@ -1,0 +1,11 @@
+department:
+  type: object
+  required:
+    - id
+    - department_name
+  properties:
+    id:
+      type: integer
+      format: int64
+    department_name:
+      type: string

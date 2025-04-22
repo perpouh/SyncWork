@@ -1,13 +1,12 @@
 project:
   type: object
   required:
-    - projectId
-    - name
+    - id
+    - project_name
   properties:
-    projectId:
-      type: integer
-      format: int64
-    name:
+    id:
+      type: string
+    project_name:
       type: string
 projects:
   type: array

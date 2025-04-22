@@ -1,0 +1,12 @@
+
+office:
+  type: object
+  required:
+    - id
+    - office_name
+  properties:
+    id:
+      type: integer
+      format: int64
+    office_name:
+      type: string

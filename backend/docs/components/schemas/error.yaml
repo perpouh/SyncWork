@@ -1,14 +1,10 @@
 error:
   type: object
-  required:
-    - errorId
-    - name
   properties:
-    errorId:
-      type: integer
-      format: int64
-    name:
+    error:
       type: string
+    errors:
+      type: array
 errors:
   type: array
   maxItems: 100

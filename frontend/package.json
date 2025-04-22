@@ -1,9 +1,0 @@
-{
-  "name": "SyncWork",
-  "version": "1.0.0",
-  "description": "Sync Your Work!",
-  "main": "index.js",
-  "repository": "https://github.com/perpouh/SynkWork",
-  "author": "perpouh",
-  "license": "MIT"
-}

@@ -1,14 +1,26 @@
 user:
   type: object
   required:
-    - userId
-    - name
+    - id
+    - username
+    - screen_name
+    - email
   properties:
-    userId:
+    id:
       type: integer
       format: int64
-    name:
+    username:
       type: string
+    screen_name:
+      type: string
+    office:
+      type: object
+      $ref: "./office.yaml#/office"
+    department:
+      type: object
+      $ref: "./department.yaml#/department"
+    status:
+      type: integer
 users:
   type: array
   maxItems: 100

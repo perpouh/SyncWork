@@ -55,6 +55,10 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "bullet" # Helps to kill N+1 queries and unused eager loading
   gem "simplecov" # Simple code coverage for Ruby
+
+  gem "rspec-rails" # RSpec for Rails
+  gem "factory_bot_rails" # A library for setting up Ruby objects as test data
+  gem 'committee-rails'
 end
 
 group :development do

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+develop:
+  id: 1
+  department_name: 開発部
+  department_manager: 1
+
+design:
+  id: 2
+  department_name: デザイン部
+  department_manager: 1

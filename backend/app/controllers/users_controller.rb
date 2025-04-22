@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   respond_to :json
+
   def index
-    @users = User.all
-    render json: @users, status: :ok
+    @users = User.joins(:office, :department).all
+    render json: @users.as_json(include: [:office, :department]), status: :ok
   rescue StandardError => e
     render json: { error: e.message }, status: :internal_server_error
   end
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
 
   private
   def set_user
-    @user = User.first
+    @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'User not found' }, status: :not_found
   end
