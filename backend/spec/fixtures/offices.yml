@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tokyo:
+  id: 1
+  office_name: 東京本社
+  office_address: 東京都千代田区
+  office_manager: 1
+  office_tel: 07000000000
+
+sendai:
+  id: 2
+  office_name: 仙台支社
+  office_address: 宮城県仙台市青葉区
+  office_manager: 1
+  office_tel: 08000000000

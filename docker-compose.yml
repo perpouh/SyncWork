@@ -19,8 +19,9 @@ services:
       DB_DATABASE: app_development
     depends_on:
       - db
-    command: >
-      /bin/bash -c "mkdir -p /app/log && touch /app/log/development.log && chmod -R 777 /app/log && bundle exec rails s"
+    command: /bin/bash -c "rm -f tmp/pids/server.pid && bundle exec rails s"
+    # command: >
+    #   /bin/bash -c "mkdir -p /app/log && touch /app/log/development.log && chmod -R 777 /app/log && bundle exec rails s"
 
   frontend:
     build:

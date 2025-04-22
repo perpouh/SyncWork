@@ -1,0 +1,32 @@
+openapi: "3.0.3"
+info:
+  version: 2023.1.1
+  title: SyncWork
+  description: Syncronize your work with your team
+servers:
+  - url: http://localhost
+    description: Syncronize your work with your team
+tags:
+  - name: Admin
+    description: Admin Operation
+  - name: Manager
+    description: Manager Operation
+  - name: Member
+    description: Member Operation
+paths:
+  /users:
+    $ref: "./paths/users.yaml#/users"
+  /users/{id}:
+    $ref: "./paths/user.yaml#/user"
+  /projects:
+    $ref: "./paths/projects.yaml#/projects"
+  /projects/{id}:
+    $ref: "./paths/project.yaml#/project"
+components:
+  schemas:
+    user:
+      $ref: "./components/schemas/user.yaml#/user"
+    project:
+      $ref: "./components/schemas/project.yaml#/project"
+    error:
+      $ref: "./components/schemas/error.yaml#/error"

@@ -1,0 +1,59 @@
+user:
+  get:
+    summary: Get user by ID
+    operationId: getUserById
+    tags:
+      - User
+    parameters:
+      - name: id
+        in: path
+        description: ID of user to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+    responses:
+      '200':
+        description: User object returned successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/user.yaml#/user"
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"
+  delete: 
+    summary: Delete user by ID
+    operationId: deleteUserById
+    tags:
+      - User
+    parameters:
+      - name: id
+        in: path
+        description: ID of user to delete
+        required: true
+        schema:
+          type: integer
+          format: int64
+    responses:
+      '204':
+        description: User deleted successfully
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"

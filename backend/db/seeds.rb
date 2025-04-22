@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+departments = [
+  {}
+].map do |department|
+  Department.find_or_create_by!(department)
+end
+
+offices = [
+  {}
+].map do |office|
+  Office.find_or_create_by!(office)
+end
+
+[
+  {}
+].each do |user|
+  User.find_or_create_by!(user)
+end

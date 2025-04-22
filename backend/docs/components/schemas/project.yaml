@@ -1,0 +1,15 @@
+project:
+  type: object
+  required:
+    - id
+    - project_name
+  properties:
+    id:
+      type: string
+    project_name:
+      type: string
+projects:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/project"

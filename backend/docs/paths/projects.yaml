@@ -1,0 +1,33 @@
+projects:
+  get:
+    summary: Get all projects
+    operationId: getProjects
+    tags:
+      - Project
+    parameters:
+      - name: limit
+        in: query
+        description: How many projects to return at one time (max 100)
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          format: int32
+    responses:
+      '200':
+        description: A paged array of projects
+        content:
+          application/json:    
+            schema:
+              $ref: "../components/schemas/project.yaml#/projects"
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"

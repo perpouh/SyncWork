@@ -1,0 +1,28 @@
+user:
+  type: object
+  required:
+    - id
+    - username
+    - screen_name
+    - email
+  properties:
+    id:
+      type: integer
+      format: int64
+    username:
+      type: string
+    screen_name:
+      type: string
+    office:
+      type: object
+      $ref: "./office.yaml#/office"
+    department:
+      type: object
+      $ref: "./department.yaml#/department"
+    status:
+      type: integer
+users:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/user"

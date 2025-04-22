@@ -1,0 +1,27 @@
+name: Expand OpenAPI $ref
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install swagger-cli
+        run: npm install -g @apidevtools/swagger-cli
+
+      - name: Check path
+        run: pwd && ls -la
+
+      - name: Expand $ref in OpenAPI
+        run: |
+          swagger-cli bundle ./backend/docs/index.yaml --outfile ./backend/docs/openapi.yaml --type yaml

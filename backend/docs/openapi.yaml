@@ -1,0 +1,272 @@
+openapi: 3.0.3
+info:
+  version: 2023.1.1
+  title: SyncWork
+  description: Syncronize your work with your team
+servers:
+  - url: 'http://localhost'
+    description: Syncronize your work with your team
+tags:
+  - name: Admin
+    description: Admin Operation
+  - name: Manager
+    description: Manager Operation
+  - name: Member
+    description: Member Operation
+paths:
+  /users:
+    get:
+      summary: Get all users
+      operationId: getUsers
+      tags:
+        - User
+      parameters:
+        - name: limit
+          in: query
+          description: How many users to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            format: int32
+      responses:
+        '200':
+          description: A paged array of users
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/user'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  summary: Unexpected error
+                  value: |-
+                    {
+                      "code": "ERR90002",
+                      "message": "we couldn't handle your request."
+                    }
+                overload_error:
+                  summary: Processing overload
+                  value: |-
+                    {
+                      "code": "ERR90001",
+                      "message": "we couldn't handle your request."
+                    }
+  '/users/{id}':
+    get:
+      summary: Get user by ID
+      operationId: getUserById
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: User object returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+    delete:
+      summary: Delete user by ID
+      operationId: deleteUserById
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: User deleted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+  /projects:
+    get:
+      summary: Get all projects
+      operationId: getProjects
+      tags:
+        - Project
+      parameters:
+        - name: limit
+          in: query
+          description: How many projects to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            format: int32
+      responses:
+        '200':
+          description: A paged array of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 100
+                items:
+                  $ref: '#/components/schemas/project'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+  '/projects/{id}':
+    get:
+      summary: Get project by ID
+      operationId: getProjectById
+      tags:
+        - Project
+      parameters:
+        - name: id
+          in: path
+          description: ID of project to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project object returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+    delete:
+      summary: Delete project by ID
+      operationId: deleteProjectById
+      tags:
+        - Project
+      parameters:
+        - name: id
+          in: path
+          description: ID of project to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Project deleted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unexpected_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/unexpected_error'
+                overload_error:
+                  $ref: '#/paths/~1users/get/responses/default/content/application~1json/examples/overload_error'
+components:
+  schemas:
+    user:
+      type: object
+      required:
+        - id
+        - username
+        - screen_name
+        - email
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        screen_name:
+          type: string
+        office:
+          type: object
+          required:
+            - id
+            - office_name
+          properties:
+            id:
+              type: integer
+              format: int64
+            office_name:
+              type: string
+        department:
+          type: object
+          required:
+            - id
+            - department_name
+          properties:
+            id:
+              type: integer
+              format: int64
+            department_name:
+              type: string
+        status:
+          type: integer
+    project:
+      type: object
+      required:
+        - id
+        - project_name
+      properties:
+        id:
+          type: string
+        project_name:
+          type: string
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: array

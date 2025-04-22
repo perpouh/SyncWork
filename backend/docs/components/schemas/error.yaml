@@ -1,0 +1,12 @@
+error:
+  type: object
+  properties:
+    error:
+      type: string
+    errors:
+      type: array
+errors:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/error"

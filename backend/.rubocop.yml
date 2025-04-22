@@ -28,3 +28,4 @@ AllCops:
     - 'config.ru'
     - 'Gemfile'
     - 'Rakefile'
+    - 'spec/**/*'
