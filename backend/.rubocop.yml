@@ -29,5 +29,3 @@ AllCops:
     - 'Gemfile'
     - 'Rakefile'
     - 'spec/**/*'
-Style/EndOfLine:
-  EnforcedStyle: crlf
