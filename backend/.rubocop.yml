@@ -28,3 +28,6 @@ AllCops:
     - 'config.ru'
     - 'Gemfile'
     - 'Rakefile'
+    - 'spec/**/*'
+Style/EndOfLine:
+  EnforcedStyle: crlf

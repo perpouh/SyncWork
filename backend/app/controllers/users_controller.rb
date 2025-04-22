@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
+# This file is part of the Project Management System.
+# It is subject to the license terms in the LICENSE file found in the top-level directory of this distribution and at
+#
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
   respond_to :json
 
   def index
     @users = User.joins(:office, :department).all
-    render json: @users.as_json(include: [:office, :department]), status: :ok
+    render json: @users.as_json(include: %i[office department]), status: :ok
   rescue StandardError => e
     render json: { error: e.message }, status: :internal_server_error
   end
@@ -47,11 +52,13 @@ class UsersController < ApplicationController
   end
 
   private
+
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'User not found' }, status: :not_found
   end
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
