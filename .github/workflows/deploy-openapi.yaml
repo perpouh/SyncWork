@@ -1,11 +1,11 @@
 name: Deploy Swagger UI to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - develop
       - main
-  workflow_dispatch:
 jobs:
   prepare:
     runs-on: ubuntu-latest
