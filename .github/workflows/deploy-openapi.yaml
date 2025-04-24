@@ -49,7 +49,7 @@ jobs:
         uses: Legion2/swagger-ui-action@v1
         with:
           output: swagger-ui
-          spec-file: openapi.yaml
+          spec-file: backend/docs/openapi.yaml
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v3
         with:
