@@ -31,10 +31,13 @@ jobs:
         run: |
           swagger-cli bundle ./docs/index.yaml --outfile ./docs/openapi.yaml --type yaml
   build:
+    needs: prepare
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: backend
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Chekcout code
         uses: actions/checkout@v4
