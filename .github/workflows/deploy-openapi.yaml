@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend
+        working-directory: backend/docs
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -44,12 +44,12 @@ jobs:
       - name: Install swagger-cli
         run: npm install -g swagger-cli
       - name: Debug
-        run: ls -la docs/openapi.yaml
+        run: ls -la openapi.yaml
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
         with:
           output: swagger-ui
-          spec-file: docs/openapi.yaml
+          spec-file: openapi.yaml
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v3
         with:
