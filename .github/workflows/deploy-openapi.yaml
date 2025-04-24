@@ -44,13 +44,12 @@ jobs:
       - name: Install swagger-cli
         run: npm install -g swagger-cli
       - name: Debug
-        run: ls -la openapi.yaml
+        run: pwd && ls -la openapi.yaml
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
         with:
           output: swagger-ui
           spec-file: openapi.yaml
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v3
         with:
