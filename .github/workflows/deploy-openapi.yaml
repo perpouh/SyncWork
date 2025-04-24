@@ -44,7 +44,7 @@ jobs:
       - name: Install swagger-cli
         run: npm install -g swagger-cli
       - name: Debug
-        run: pwd && ls
+        run: pwd && ls docs
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
         with:
