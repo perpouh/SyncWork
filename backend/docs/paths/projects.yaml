@@ -31,3 +31,36 @@ projects:
                 $ref: "../components/examples/error.yaml#/unexpected_error"
               overload_error:
                 $ref: "../components/examples/error.yaml#/overload_error"
+  post:
+    summary: Create a new project
+    operationId: createProject
+    tags:
+      - Project
+    requestBody:
+      description: Project object that needs to be added to the store
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project:
+                $ref: '../components/parameters/project.yaml#/project'
+    responses:
+      '201':
+        description: Project created successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/project.yaml#/project"
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"
