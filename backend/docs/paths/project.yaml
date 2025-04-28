@@ -29,18 +29,44 @@ project:
                 $ref: "../components/examples/error.yaml#/unexpected_error"
               overload_error:
                 $ref: "../components/examples/error.yaml#/overload_error"
+  patch:
+    summary: Update project by ID
+    operationId: updateProjectById
+    tags:
+      - Project
+    requestBody:
+      description: Project object that needs to be updated
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project:
+                $ref: '../components/parameters/project.yaml#/project'
+    responses:
+      '200':
+        description: Project updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/project.yaml#/project"
+      default:
+        description: unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/error.yaml#/error"
+            examples:
+              unexpected_error:
+                $ref: "../components/examples/error.yaml#/unexpected_error"
+              overload_error:
+                $ref: "../components/examples/error.yaml#/overload_error"
   delete:
     summary: Delete project by ID
     operationId: deleteProjectById
     tags:
       - Project
-    parameters:
-      - name: id
-        in: path
-        description: ID of project to delete
-        required: true
-        schema:
-          type: string
     responses:
       '204':
         description: Project deleted successfully

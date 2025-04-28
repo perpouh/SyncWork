@@ -1,8 +1,5 @@
 project:
   type: object
-  required:
-    - id
-    - project_name
   properties:
     id:
       type: string
